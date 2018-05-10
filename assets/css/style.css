@@ -1,0 +1,31 @@
+.heading-font {
+    font-family: 'Cormorant Unicase', serif;
+}
+
+.message-font {
+    font-family: 'Arvo', serif; 
+}
+
+body {
+    background-image: url("../images/starting_background.jpg");
+}   
+ 
+#main-div {
+    background-image: url("../images/gameplay_background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+    border-color: black; 
+    border-style: groove; 
+    border-width: 0.5em;  
+}
+
+#answer-options button:hover {
+    transform: scale(1.1); 
+}
+
+#image-update {
+    height: 15em;
+    width: 20em;  
+}
+ 
+ 

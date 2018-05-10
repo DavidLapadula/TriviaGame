@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- Link to jQuery library-->
+    <link href="https://fonts.googleapis.com/css?family=Arvo|Cormorant+Unicase" rel="stylesheet">  <!--Google Fonts--> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"> <!-- Bootstrap used to design the layout-->
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"/>  <!-- External style sheet for custom aesthetic adjustments-->
+    <link rel="shortcut icon" href="assets/images/canadian_favicon.png" type="image/x-icon">     <!-- Favicon-->  
+    <title>Canadian Trivia</title>
+</head>   
+<body>       
+    <div class="container">  
+        <div class="row mt-3 d-flex justify-content-center" id="main-div">   
+            <div class="col-12 text-center">
+                <h1 class="heading-font display-4 text-danger font-weight-bold" id="game-heading">A Game of Canadian Trivia</h1>
+            </div>  
+            <div class="row mt-3 mb-2 justify-content-center" id="game-start"> <!-- Start of Gameplay-->
+                <div class="col-12">
+                    <p class="h4 text-danger message-font text-left font-weight-bold m-3"> 
+                        Ready to test your knowldge of the Great White North?
+                        <br> <br> 
+                        You get 30 seconds to answer each question. Only a correct answer gets awarded a point; 
+                        a wrong answer or running out of time registers a zero for that question. 
+                        <br> <br> 
+                        Get 70% of questions right and You win! Get over 90% and have the option for a bonus round!
+                        <br> <br>     
+                        Hit that start button to begin...  
+                    </p>       
+                </div>  
+                <div class="col-12 text-center">
+                    <button type="button" class="col-md-6 btn btn-danger btn-lg mt-2 text-dark h2 font-weight-bold" id="start-button">START</button>
+                </div>  
+            </div>  
+            <div class="row mt-3 mb-2 justify-content-center" id="game-play"> <!-- Display during a question--> 
+                <div class="col-10 jumbotron h2 text-danger message-font bg-danger text-light text-center" id="question-div"> 
+                </div>
+                <div class="row w-50 d-flex justify-content-center" id="answer-options">  
+                    <!-- <button type="button" class="col-md-6 btn btn-secondary btn-lg mt-2 h2 font-weight-bold text-light"></button> -->
+                </div>   
+                <div class="col-6 offset-md-3 mt-3" id="timer">  
+                </div>         
+            </div>     
+            <div class="row mt-3 mb-2 justify-content-center" id="game-results"> <!-- Display after a question and put on a timer -->
+                <div class="col-10 h3 text-danger message-font bg-danger text-light p-2 text-center">
+                    <p id="answer-result"></p>
+                    <p id="final-result"></p> 
+                </div>  
+                <div class="col-12 text-center m-2" id="image-result">
+                    <img src="assets/images/lose.webp" id="image-update"> 
+                </div>  
+                <div class="col-10 h3 text-danger message-font text-center pt-2">
+                    <p id="final-message"></p>
+                    <div class="row justify-content-center" id="final-stats">
+                        <table class="table table-striped table-dark col-md-6 m-2">
+                            <thead> 
+                                <tr class="h4">
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Stat Line</th>
+                                </tr> 
+                            </thead> 
+                            <tbody>  
+                                <tr class="h6" id="correct-amount">
+                                    <th scope="row">Correct</th>
+                                </tr>
+                                <tr class="h6" id="incorrect-amount">
+                                    <th scope="row">Incorrect</th>
+                                </tr>  
+                                <tr class="h6" id="avg-time">
+                                    <th scope="row">Average Time</th>
+                                </tr>
+                                <tr class="h6" id="percent-correct">
+                                    <th scope="row">Percent</th>
+                                </tr>
+                            </tbody>  
+                        </table>
+                    </div>
+                </div>   
+            </div>
+        </div>  
+    </div>  
+    <audio id="theme-song" autoplay src=""></audio>   <!-- Hidden Audio Tag to play music based on result of game-->
+    <script src="assets/javascript/app.js"></script> <!--Link to external javascript file with jquery   --> 
+</body>
+</html>
