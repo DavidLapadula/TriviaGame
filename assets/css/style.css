@@ -7,7 +7,14 @@
 }
 
 body {
-    background-image: url("../images/starting_background.jpg");
+    position: absolute;
+    height: 100vh;
+    background-image: url(../images/starting_background.jpg);
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw; 
 }   
  
 #main-div {
@@ -17,7 +24,7 @@ body {
     border-color: black; 
     border-style: groove; 
     border-width: 0.5em;  
-}
+}  
 
 #answer-options button:hover {
     transform: scale(1.1); 
