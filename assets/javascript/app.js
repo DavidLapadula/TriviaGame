@@ -5,10 +5,10 @@ var gameQuestions = [{
 
 	question: "What industy do most Canadians work in?",
 	answerList: ["Energy", "Service", "Government", "Manufacturing"],
-    answer: 2, 
+    answer: 1, 
     image: "assets/images/service_question.jpg", 
     message: "Statistically Speaking, most Canadians work in the service industry", 
-},{
+},{ 
 	question: "What is Canada's highest mountain?",
 	answerList: ["Mount Saint Elias", "Mount Slaggard", "Mount Lucania", "Mount Logan"],
     answer: 3, 
@@ -19,7 +19,7 @@ var gameQuestions = [{
 	answerList: ["New Brunswick", "Nunavut", "Alaska", "North Pole"],
     answer: 1, 
     image: "assets/images/territories_region.png", 
-    message: "Along with Yukon and the North West Territories, Nunavut is one of Canada's territories", 
+    message: "Along with Yukon and the North West Territories, Nunavut is a Canadian territory", 
 },{
 	question: "Since 2000, how Many Olympic Gold Medals does the Mens Canadian Hockey team have?",
 	answerList: ["3", "5", "2", "0"],
@@ -31,13 +31,13 @@ var gameQuestions = [{
 	answerList: ["Supreme Court", "The Cabinet", "House of Commons", "The Canadian Military"],
     answer: 2, 
     image: "assets/images/parliament.jpg", 
-    message: "Along with the Senate, the House of Commons is a governing body of the Canadian Parliament", 
+    message: "The House of Commons is one governing body of the Canadian Parliament", 
 },{
 	question: "What was the last province to join Canada?",
 	answerList: ["Newfoundland", "Quebec", "The North Pole", "Alberta"],
     answer: 0,
     image: "assets/images/newfoundland.jpg", 
-    message: "In 1949 Newfoundland became the last province to join Canada", 
+    message: "Newfoundland became the last province to join Canada in 1949", 
 },{
 	question: "In what year did the Canadian Confederation Occur?",
 	answerList: ["1776", "1867", "1812", "1999"],
@@ -46,10 +46,10 @@ var gameQuestions = [{
     message: "It was in 1867 that the Dominion of Canada was formed",  
 },{
 	question: "Who was Canada's longest non-consecutive serving Prime Minister?",
-	answerList: ["Sir John A. Macdonald", "Pierre Elliot Trudeau", "Jean Chretien", "William Lyon Mackenzie"],
+	answerList: ["Sir John A. Macdonald", "Pierre Elliot Trudeau", "Jean Chretien", "William Mackenzie"],
     answer: 3,
     image: "assets/images/william_lyon.jpg", 
-    message: "Between 1921 and 1948, William Lyon Mackenzie served 21 Years and 154 days as Prime Minister",  
+    message: "With a tenure of over 21 years between 1921 and 1948, William Mackenzie is the longest serving Prime Minister",  
 },{
 	question: "Which day of the year is Canada Day?",
 	answerList: ["July 1st", "July 4th", "December 31st", "April 1st"],
@@ -57,7 +57,7 @@ var gameQuestions = [{
     image: "assets/images/canada_day.webp", 
     message: "In celebration of the Constitution Act, July 1st is Canada day", 
 },{   
-	question: "Is Hockey Canada's official sport",
+	question: "Hockey is Canada's official sport", 
 	answerList: ["True", "False"],
     answer: 1,
     image: "assets/images/lacrosse.jpg", 
@@ -67,23 +67,25 @@ var gameQuestions = [{
 	answerList: ["1867", "1812", "1944", "1965"],
     answer: 3,
     image: "assets/images/waving_flag.gif", 
-    message: "Designed by George Stanley to replace the Union Flag, the official Canadian flag was established in 1965",  
+    message: "Designed by George Stanley, the official Canadian flag was established in 1965",  
 },{
-	question: "Have the Toronto Maple Leafs won a Stanley Cup in the last 50 years?",
+	question: "The Toronto Maple Leafs won a Stanley Cup in the last 50 years",
 	answerList: ["True", "False"], 
     answer: 1, 
     image: "assets/images/1967_cup.jpg", 
     message: "With their last win coming in 1967, they have not captured Lord Stanley in over a half century",    
 }]; 
-         
+            
 //Selectors for in game play
 var gameHeading = $("#game-heading"); 
 var gameStartDiv = $("#game-start"); 
 var startButton = $("#start-button"); 
+var restartButton = $("#play-again"); 
 var gamePlayDiv = $("#game-play"); 
 var questionDiv = $("#question-div"); 
 var optionDiv = $("#answer-options"); 
 var timer = $("#timer"); 
+var progressSection = $("#progress-section");   
 var gameResultsDiv = $("#game-results"); 
 var answerResultDiv = $("#answer-result"); 
 var finalResultDiv = $("#final-result"); 
@@ -115,17 +117,19 @@ var correctAnswers = 0;
 var wrongAnswers = 0;
 var timeoutAnswers = 0;  
 var timeUsed = 0;
-var percentScore = (correctAnswers/gameQuestions.length) * 100; //*** */
+var percentScore = 0; 
 var secondsRemaining = 0;
 var buttonStyle = "col-md-12 btn btn-secondary btn-lg mt-2 h2 font-weight-bold text-light answer-click"; 
   
 // Conditions for the beggining of the game (function)  *******
 var gameStartConditions = function () {}
     gamePlayDiv.hide(); 
+    progressSection.hide();  
     gameResultsDiv.hide(); 
     gameStartDiv.show(); 
-  
-// solution to end of game without page reload var usedQuestions = []; ******
+
+// Conditions for the restarting the game (function)  *******
+var newGame = function () {}
   
 //function for generating the question and placing it on the screen  
 var questionGenerator = function () {
@@ -142,14 +146,14 @@ var questionGenerator = function () {
    currentAnswerImage = questionObject.image; 
    currentAnswerMessage = questionObject.message;
    questionDiv.text(currentQuestion); 
-        for (var i = 0; i < currentAnswerList.length; i++) { //fills the options section with buttons for each question and a data index of their place in the array
-            var answerButton = $('<button>');
-            answerButton.addClass(buttonStyle);
-            answerButton.text((i+1) + ") " + currentAnswerList[i]);
-            answerButton.attr({'data-index': i})
-            optionDiv.append(answerButton);  
-        }  
-    timeClock(); 
+    for (var i = 0; i < currentAnswerList.length; i++) { //fills the options section with buttons for each question and a data index of their place in the array
+        var answerButton = $('<button>');
+        answerButton.addClass(buttonStyle);
+        answerButton.text((i+1) + ") " + currentAnswerList[i]);
+        answerButton.attr({'data-index': i})
+        optionDiv.append(answerButton);  
+    }  
+    timeClock();  
 
     // collects the data of the user click and stops the timer 
     $('.answer-click').on('click', function() { 
@@ -168,7 +172,7 @@ var questionGenerator = function () {
      timer.text('Remaining Time: ' + timerSeconds)
      timedInterval = setInterval(timeCountdown, 1000) 
  } 
- var timeCountdown = function (currentArray) {
+ var timeCountdown = function () {
      timerSeconds--; 
      timer.text('Remaining Time: ' + timerSeconds)
      if (timerSeconds < 1) {
@@ -176,9 +180,10 @@ var questionGenerator = function () {
          userResults()
      } 
    
- } 
- 
- var userResults = function () { //sets conditions for the result of the reponse and then runs the game status function in 5 seconds
+ }  
+
+//sets conditions for the result of the reponse and then runs the game status function in 5 seconds
+ var userResults = function () { 
         gamePlayDiv.hide();
         finalStatsTable.hide();   
         gameResultsDiv.show(); 
@@ -197,37 +202,65 @@ var questionGenerator = function () {
             answerResultDiv.text('Out of Time!') 
         } 
         userResponded = false;   
-        setTimeout(gameStatus, 5000);         
+        setTimeout(gameStatus, 5000);          
  }  
- 
+
+ // Checks if all the questions have been answered first. If so, shows displays calculating bar and then runs game over in 5 seconds. Otherwise generates new question
  var gameStatus = function () {   
-     if (questionsUsed === 3) { //questionsAnswered.length for full length
-        gameHeading.text('Game Over')
-        finalMessageDiv.text('So how did you do?'); 
-        finalStatsTable.show();  
-        correctAmount.append('<th>' + correctAnswers + '</th>')
-        incorrectAmount.append('<th>' + wrongAnswers + '</th>')
-        avgTime.append('<th>' + (timeUsed/gameQuestions.length).toFixed(1) + ' seconds </th>')
-        percentCorrect.append('<th>' + percentScore + ' % </th>')
-        timeOutAmount.append('<th>' + timeoutAnswers + ' </th>')
-        if (percentScore >= 80) {
-            answerResultDiv.text('You Have Won the Game !');
-            finalResultDiv.text('You got ' + correctAnswers + ' correct ' + ' out of ' + gameQuestions.length);
-            imageUpdate.attr('src', 'assets/images/win.webp');
-            gameSound.attr('src', 'assets/audio/national_anthem.mp3')  
-        } else if (percentScore < 80) {
-            answerResultDiv.text('You Have Lost the Game !');  
-            finalResultDiv.text('You got ' + correctAnswers + ' correct ' + ' out of ' + gameQuestions.length);
-            imageUpdate.attr('src', 'assets/images/lose.webp'); 
-        } 
- 
+     if (questionsUsed === 1) { //questionsAnswered.length 
+        calculatingResult(); 
+        setTimeout(gameOver, 5000);   
      } else {
         questionGenerator(); 
      }
 
- }    
+ }         
   
- // Start button that hides initial Div and shows Div with questions and timer
+// Displays the progress bar for 5 seconds before the results are calculated and displayed
+ var calculatingResult = function () {
+    progressSection.show(); 
+    answerResultDiv.text(''); 
+    finalResultDiv.text('Calculating');
+    imageUpdate.hide(); 
+    gameHeading.text('Please await your score')
+        var progressBar = document.getElementById("progress-bar")   // emebedded function to update progress bar ****
+        var width = 1; 
+        var id = setInterval(frame, 10);
+        function frame() {  
+            if (width >= 100) {
+                clearInterval(id); 
+            } else {
+                width = width + 0.2;   
+                progressBar.style.width = width + '%'; 
+            }
+        }
+ }  
+       
+ var gameOver = function () {
+    percentScore = ((correctAnswers/gameQuestions.length) * 100).toFixed();   
+    progressSection.hide();  
+    gameHeading.text('Game Over')
+    finalMessageDiv.text('Analytics'); 
+    finalStatsTable.show();  
+    correctAmount.append('<th>' + correctAnswers + '</th>')
+    incorrectAmount.append('<th>' + wrongAnswers + '</th>')
+    avgTime.append('<th>' + (timeUsed/gameQuestions.length).toFixed(1) + ' seconds </th>')
+    percentCorrect.append('<th>' + percentScore + ' % </th>')
+    timeOutAmount.append('<th>' + timeoutAnswers + ' </th>')
+    if (percentScore >= 1) { 
+        answerResultDiv.text('You have won the game !');
+        finalResultDiv.text('You got ' + correctAnswers + ' correct ' + ' out of ' + gameQuestions.length);
+        imageUpdate.show().attr('src', 'assets/images/win.webp');
+        gameSound.attr('src', 'assets/audio/national_anthem.mp3')  
+    } else if (percentScore < 80) {
+        answerResultDiv.text('You have lost the game !');  
+        finalResultDiv.text('You got ' + correctAnswers + ' correct ' + ' out of ' + gameQuestions.length);
+        imageUpdate.show().attr('src', 'assets/images/lose.webp'); 
+        gameSound.attr('src', 'assets/audio/lose_game.mp3') 
+    } 
+ }  
+    
+// Start button that hides initial Div and shows Div with questions and timer
 startButton.on('click', function () {
     gameStartDiv.hide();  
     gamePlayDiv.show(); 
@@ -235,10 +268,7 @@ startButton.on('click', function () {
     questionGenerator();     
 }); 
 
-// need end of game clear method and button
  
-});     
+});       
 
-// Additions
-    // For loop that creates an effect. https://vincentgarreau.com/en
  
