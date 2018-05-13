@@ -4,14 +4,14 @@
 
 .message-font {
     font-family: 'Arvo', serif; 
-}
+} 
  
 #progress-section {
     width: 100%;
     background-color: white;
 }
 #progress-bar {
-    width: 1%;
+    width: 0%; 
     height: 2em;
     background-color: red;
 }

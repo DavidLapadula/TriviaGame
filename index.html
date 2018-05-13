@@ -20,72 +20,75 @@
             <div class="row mt-3 mb-2 justify-content-center" id="game-start"> <!-- Start of Gameplay-->
                 <div class="col-12">
                     <p class="h4 text-danger message-font text-left font-weight-bold m-3"> 
-                        Ready to test your knowldge of the Great White North?
-                        <br> <br> 
+                        Ready to test your knowledge of the Great White North?
+                        <br> <br>     
                         You get 20 seconds to answer each question. Only a correct answer gets awarded a point; 
                         a wrong answer or running out of time registers a zero for that question. 
                         <br> <br> 
                         Get 70% of questions right and You win!
-                        <br> <br>     
+                        <br> <br>        
                         Hit that start button to begin...  
-                    </p>        
-                </div>       
-            </div>   
+                    </p>          
+                </div>           
+            </div>    
             <div class="row mt-3 mb-2 justify-content-center" id="game-play"> <!-- Display during a question--> 
                 <div class="col-10 jumbotron h2 text-danger message-font bg-danger text-light text-center" id="question-div"> 
-                </div>
-                <div class="row w-50 d-flex justify-content-center" id="answer-options">  
-                </div>    
-                <div class="col-6 offset-md-3 mt-3 h3 message-font text-danger" id="timer">  
-                </div>              
-            </div>             
+                </div> 
+                <div class="col-12 d-flex justify-content-center mt-3 h3 message-font text-danger" id="timer">  
+                </div> 
+                <div class="row w-50 d-flex justify-content-center" id="answer-options">    
+                </div>                
+            </div>            
             <div class="row w-100 mt-3 mb-2 justify-content-center" id="game-results"> <!-- Display after a question and when the game results are displayed -->
                 <div class="col-10 h3 text-danger message-font bg-danger text-light p-2 text-center">
-                    <p id="answer-result"></p>
+                    <p id="answer-result"></p> 
                     <p id="final-result"></p>   
-                </div>          
-                <div class="col-10 h3 text-danger message-font text-center pt-2">
+                </div>           
+                <div class="col-6 h3 text-danger message-font text-center pt-2">
                     <p class="font-weight-bold mb-1" id="final-message"></p>
-                    <div id="progress-section">  
-                        <div id="progress-bar"></div>   
-                    </div>
-                    <div class="row justify-content-center" id="final-stats">
-                        <table class="table table-striped table-dark col-md-6 m-1">
-                            <thead>            
-                                <tr class="h5">  
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Stat Line</th>  
-                                </tr>    
-                            </thead>                      
-                            <tbody>         
-                                <tr class="h6" id="correct-amount">
-                                    <th scope="row">Correct</th>
-                                </tr>
-                                <tr class="h6" id="incorrect-amount">
-                                    <th scope="row">Incorrect</th>
-                                </tr>    
-                                <tr class="h6" id="timed-out">
-                                    <th scope="row">Timed Out</th>
-                                </tr>  
-                                <tr class="h6" id="avg-time">
-                                    <th scope="row">Average Time</th>
-                                </tr>
-                                <tr class="h6" id="percent-correct">
-                                    <th scope="row">Percent</th>
-                                </tr>     
-                            </tbody>       
-                        </table>
-                    </div>    
+                    <table class="table table-striped table-dark m-1" id="final-stats">
+                        <thead>            
+                            <tr class="h5">  
+                                <th scope="col">Category</th>
+                                <th scope="col">Stat Line</th>  
+                            </tr>     
+                        </thead>                           
+                        <tbody>           
+                            <tr class="h6">
+                                <th scope="row">Correct</th>
+                                <th id="correct-amount"></th>
+                            </tr>
+                            <tr class="h6">
+                                <th scope="row">Incorrect</th> 
+                                <th id="incorrect-amount"></th>
+                            </tr>     
+                            <tr class="h6">
+                                <th scope="row">Timed Out</th>
+                                <th id="timed-out"></th> 
+                            </tr>     
+                            <tr class="h6"> 
+                                <th scope="row">Average Time</th>
+                                <th id="avg-time"></th>
+                            </tr>
+                            <tr class="h6">
+                                <th scope="row">Percent</th>
+                                <th id="percent-correct"></th>
+                            </tr>      
+                        </tbody>         
+                    </table>  
                 </div> 
-                <div class="col-12 text-center m-2" id="image-result">
-                    <img src="" id="image-update" alt="Game play Image">   
+                <div class="col-10 justify-content-center p-0" id="progress-section">  
+                    <div id="progress-bar"></div>     
+                </div>
+                <div class="col-6 text-center m-2" id="image-result">
+                    <img src="" class="img-fluid" id="image-update" alt="Game Play Image">     
                 </div>    
             </div>  
             <div class="col-12 text-center">
-                <button type="button" class="col-md-8 btn btn-dark btn-lg mt-2 text-light h2 font-weight-bold" id="start-button"></button>
+                <button type="button" class="col-md-6 btn btn-dark btn-lg mt-2 text-light h2 font-weight-bold" id="start-button"></button>
             </div> 
-        </div> 
-    </div>   
+        </div>    
+    </div>    
     <audio id="game-sound" autoplay src="" type="audio/mp3"></audio>   <!-- Hidden Audio Tag to play music based on result of game--> 
     <script src="assets/javascript/app.js"></script> <!--Link to external javascript file with jquery   --> 
 </body>
