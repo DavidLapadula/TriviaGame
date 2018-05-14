@@ -2,7 +2,7 @@ $(document).ready(function () {
 
 // Values used for the game
 var gameQuestions = [{
-
+ 
 	question: "What industry do most Canadians work in?",
 	answerList: ["Energy", "Service", "Government", "Manufacturing"],
     answer: 1, 
@@ -28,13 +28,13 @@ var gameQuestions = [{
 	answerList: ["3", "5", "2", "0"],
     answer: 0, 
     image: "assets/images/canada_hockey.gif", 
-    message: "The have 3, with wins in 2002, 2010, and 2014", 
+    message: "The have 3, with wins at the 2002, 2010, and 2014 winter Olympics", 
     used: false,  
 },{
 	question: "Which of these is a governing body of the Canadian Parliament?",
 	answerList: ["Supreme Court", "The Cabinet", "House of Commons", "The Canadian Military"],
     answer: 2, 
-    image: "assets/images/parliament.jpg", 
+    image: "assets/images/parliament.jpg",  
     message: "The House of Commons is one governing body of the Canadian Parliament",
     used: false,  
 },{ 
@@ -49,7 +49,7 @@ var gameQuestions = [{
 	answerList: ["1776", "1867", "1812", "1999"],
     answer: 1,
     image: "assets/images/confederation.jpg", 
-    message: "It was in 1867 that the Dominion of Canada was formed",  
+    message: "Tthe Dominion of Canada was formed in 1867",  
     used: false, 
 },{
 	question: "Who was Canada's longest non-consecutive serving Prime Minister?",
@@ -71,7 +71,7 @@ var gameQuestions = [{
     answer: 1,  
     image: "assets/images/lacrosse.jpg", 
     message: "Contrary to popular opinion, Lacrosse is Canada's National sport",  
-    used: false, 
+    used: false,  
 },{
 	question: "In what year was the Canadian Flag first shown?",
 	answerList: ["1867", "1812", "1944", "1965"],
@@ -80,14 +80,14 @@ var gameQuestions = [{
     message: "Designed by George Stanley, the official Canadian flag was established in 1965",  
     used: false, 
 },{
-	question: "The Toronto Maple Leafs won a Stanley Cup in the last 50 years",
+	question: "The Toronto Maple Leafs have won a Stanley Cup in the last 50 years",
 	answerList: ["True", "False"], 
     answer: 1,  
     image: "assets/images/1967_cup.jpg", 
     message: "With their last win coming in 1967, they have not captured Lord Stanley in over a half century",   
-    used: false,  
+    used: false,   
 }];  
-  
+    
 //Selectors for gameplay
 var gameHeading = $("#game-heading"); 
 var gameStartDiv = $("#game-start"); 
@@ -108,7 +108,7 @@ var incorrectAmount = $("#incorrect-amount");
 var timeOutAmount = $("#timed-out");  
 var avgTime = $("#avg-time");  
 var percentCorrect = $("#percent-correct");  
-var gameSound = $("#game-sound");  
+var gameSound = $("#game-sound");   
 
 //Variables used throughout gameplay
 var questionObject; 
@@ -123,13 +123,13 @@ var timerSeconds;
 var timedInterval;  
 var buttonStyle = "col-12 btn btn-secondary btn-lg mt-2 h2 font-weight-bold text-light answer-click"; 
 
-// Counters used to calculate end of game statistics
+// Counters used to control flow of game and fill up 'analytics' table at then end of the game
 var questionsUsed = 0; 
 var correctAnswers = 0; 
 var wrongAnswers = 0;
 var timeoutAnswers = 0;  
 var timeUsed = 0; 
-var percentScore = 0; 
+var percentScore = 0;  
   
 // Conditions for the beggining of the game when the page loads
 gamePlayDiv.hide(); 
@@ -138,7 +138,7 @@ gameResultsDiv.hide();
 gameStartDiv.show();  
 startButton.text('GO FOR TRIVIA'); 
 
-// Start button that hides initial div when page is loaded and resets everything after a game has been played
+// Start button that hides initial div when page is loaded and resets everything after a game has been played.
 startButton.on('click', function () {
     for (var i = 0; i < gameQuestions.length; i ++) {
         gameQuestions[i].used = false; 
@@ -150,10 +150,11 @@ startButton.on('click', function () {
     timeOutAmount.text('');  
     questionsUsed = 0; 
     correctAnswers = 0; 
-    wrongAnswers = 0; 
+    wrongAnswers = 0;  
     timeoutAnswers = 0;   
     timeUsed = 0;   
     percentScore = 0;  
+    finalStatsTable.hide();   
     gameStartDiv.hide();  
     finalMessageDiv.hide(); 
     startButton.hide();   
@@ -162,7 +163,6 @@ startButton.on('click', function () {
     questionGenerator();     
 }); 
  
-
 //function for generating the question and placing it on the screen  
 var questionGenerator = function () {
    questionDiv.empty();  //hides elements that are not part of gamplay and empties div that showed previous question when a new one is generated
@@ -172,7 +172,7 @@ var questionGenerator = function () {
    gameHeading.text('Question')
    unusedWord(); 
    questionObject.used = true;  
-   questionsUsed++;          
+   questionsUsed++;             
    currentQuestion = questionObject.question; 
    currentAnswerList = questionObject.answerList; 
    currentAnswer = questionObject.answer;  
@@ -196,7 +196,7 @@ var questionGenerator = function () {
         clearInterval(timedInterval); 
         userResults(); 
     })  
-}    
+}     
 
 // Two functions for counting down. The counting interval is cleared if the timer runs out or the user makes a choice
  var timeClock = function () {
@@ -218,14 +218,13 @@ var questionGenerator = function () {
 //sets conditions for the result of the reponse and then runs the game status function in 5 seconds
  var userResults = function () { 
         gamePlayDiv.hide();
-        finalStatsTable.hide();   
         gameResultsDiv.show(); 
         gameHeading.text('Result'); 
         imageUpdate.attr('src', currentAnswerImage)
         finalResultDiv.text(currentAnswerMessage);
         timeUsed = timeUsed += timerSeconds; 
         if ((userResponded === true) && (userChoice === currentAnswer)) { 
-            correctAnswers++;  
+            correctAnswers++;   
             answerResultDiv.text('That is Correct!') 
         } else if ((userResponded === true) && (userChoice != currentAnswer)) { //user responded boolean to distinguish when user has made a choice vs. non-answer 
             wrongAnswers++; 
@@ -236,7 +235,7 @@ var questionGenerator = function () {
         } 
         userResponded = false;    
         setTimeout(gameStatus, 5000);          
- }   
+ }    
 
 //Checks how many questions have been asked and sets the game accordingly
  var gameStatus = function () {   
@@ -261,11 +260,11 @@ var questionGenerator = function () {
     progressSection.show();  
     answerResultDiv.text(''); 
     finalResultDiv.text('Gimme a second, Eh...');
-    imageUpdate.hide(); 
-    gameHeading.text('Calculating');    
-        var progressBar = document.getElementById("progress-bar")   // nested function to update progress bar 
+    gameHeading.text('Calculating'); 
+    imageUpdate.hide();    
+        var progressBar = document.getElementById("progress-bar")   
         var width = 0; 
-        var id = setInterval(incrementBar, 10);
+        var id = setInterval(incrementBar, 10); // nested function to update progress bar 
         function incrementBar() {  
             if (width >= 100) { 
                 clearInterval(id);  
@@ -278,8 +277,8 @@ var questionGenerator = function () {
        
  //function is run when after all the questions have been answered. It shows the final screen, calculates values and determines is the game was a win or a loss
  var gameOver = function () {  
-    percentScore = ((correctAnswers/gameQuestions.length) * 100).toFixed();   
     progressSection.hide();   
+    percentScore = ((correctAnswers/gameQuestions.length) * 100).toFixed();    
     gameHeading.text('Game Over'); 
     finalMessageDiv.show().text('Analytics');  
     finalStatsTable.show();  
@@ -287,7 +286,7 @@ var questionGenerator = function () {
     incorrectAmount.text(wrongAnswers);  
     avgTime.text((timeUsed/gameQuestions.length).toFixed(1) + " seconds"); 
     percentCorrect.text(percentScore + ' %');
-    timeOutAmount.text(timeoutAnswers); 
+    timeOutAmount.text(timeoutAnswers);  
     startButton.show().text('ANOTHER ROUND?'); 
     if (percentScore >= 70) {  
         answerResultDiv.text('You have won the game !');
