@@ -161,13 +161,14 @@ startButton.on('click', function () {
     gamePlayDiv.show(); 
     gameSound.attr('src', 'assets/audio/button_click.mp3')  
     questionGenerator();     
-}); 
+});  
  
 //function for generating the question and placing it on the screen  
 var questionGenerator = function () {
    questionDiv.empty();  //hides elements that are not part of gamplay and empties div that showed previous question when a new one is generated
    optionDiv.empty(); 
    gameResultsDiv.hide()
+   imageUpdate.attr('src', '') 
    gamePlayDiv.show();   
    gameHeading.text('Question')
    unusedWord(); 
@@ -220,7 +221,7 @@ var questionGenerator = function () {
         gamePlayDiv.hide();
         gameResultsDiv.show(); 
         gameHeading.text('Result'); 
-        imageUpdate.attr('src', currentAnswerImage)
+        imageUpdate.attr('src', currentAnswerImage) 
         finalResultDiv.text(currentAnswerMessage);
         timeUsed = timeUsed += timerSeconds; 
         if ((userResponded === true) && (userChoice === currentAnswer)) { 
