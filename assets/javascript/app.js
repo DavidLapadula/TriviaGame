@@ -248,7 +248,7 @@ var questionGenerator = function () {
     } 
 }    
 
- // Returns an object from gameQuestions array and ensures it has not been used already
+ // Returns an object from gameQuestions array and ensures it has not been used already 
  var unusedWord = function () {   
         do {
             questionObject = gameQuestions[Math.floor(Math.random()* gameQuestions.length)];
@@ -282,7 +282,7 @@ var questionGenerator = function () {
     percentScore = ((correctAnswers/gameQuestions.length) * 100).toFixed();    
     gameHeading.text('Game Over'); 
     finalMessageDiv.show().text('Analytics');  
-    finalStatsTable.show();  
+    finalStatsTable.show();    
     correctAmount.text(correctAnswers); 
     incorrectAmount.text(wrongAnswers);  
     avgTime.text((timeUsed/gameQuestions.length).toFixed(1) + " seconds"); 
