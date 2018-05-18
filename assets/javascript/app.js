@@ -223,7 +223,7 @@ var questionGenerator = function () {
         gameHeading.text('Result'); 
         imageUpdate.attr('src', currentAnswerImage) 
         finalResultDiv.text(currentAnswerMessage);
-        timeUsed = timeUsed += timerSeconds; 
+        timeUsed += timerSeconds; 
         if ((userResponded === true) && (userChoice === currentAnswer)) { 
             correctAnswers++;   
             answerResultDiv.text('That is Correct!') 
@@ -303,5 +303,4 @@ var questionGenerator = function () {
  }   
     
 });       
-
  
