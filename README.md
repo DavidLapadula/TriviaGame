@@ -3,8 +3,6 @@
 ## Description
 Conventional trivia game with a Canadian theme and time-trial twist. Every question must be answered within 10 seconds and 'non-answer' counts as false. The purpose of this project was to continue improving upon javascript fundamentals and implement some new features, such as the 'setTimeout' and 'setInterval' methods. 
 
-##Screenshots
-
 ![](./assets/images/trivia.gif)
 
 ## Technology Used
